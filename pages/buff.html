@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Cyber Relay Blog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="../index.html" class="logo">Cyber Relay</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Offensive / Red Teaming</a></li>
+							<li><a href="generic.html">Defensive / Blue Teaming</a></li>
+							<li><a href="elements.html">Tryouts / Code Blocks</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://twitter.com/hackgodybj" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://instagram.com/hackgodybj" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/Hackgodybj/CyberRelay" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">March 21, 2022</span>
+									<h1>Buffer Overflow <br />
+									binary exploitation</h1>
+									<p>BufferOverflow attack typically involves violating programming languages and overwriting the bounds of the buffers they exist on.<br />
+									</p>
+								</header>
+								<div class="image main"><img src="images/blue.png" alt="" /></div>
+								<p>A buffer overflow attack takes place when an attacker manipulates the coding error to carry out malicious actions and compromise the affected system. The attacker alters the application’s execution path and overwrites elements of its memory, which amends the program’s execution path to damage existing files or expose data.</p><br/ >
+								<p>The buffer overflow exploit techniques a hacker uses depends on the architecture and operating system being used by their target. However, the extra data they issue to a program will likely contain malicious code that enables the attacker to trigger additional actions and send new instructions to the application. </p>
+							<!-- Blockquote -->
+									<h2>Buffer OverFlow Occurs when: </h2>
+									<blockquote><ul>
+										<li>Is reliant on external data to control its behavior</li>
+										<li>Is dependent on data properties that are enforced beyond its immediate scope</li>
+										<li>Is so complex that programmers are not able to predict its behavior accurately</li>
+									</ul></blockquote>
+									<hr />
+
+
+							<h3>Buffer Overflow Exploits</h3>
+							<p>
+								The buffer overflow exploit techniques a hacker uses depends on the architecture and operating system being used by their target. However, the extra data they issue to a program will likely contain malicious code that enables the attacker to trigger additional actions and send new instructions to the application. 
+								For example, introducing additional code into a program could send it new instructions that give the attacker access to the organization’s IT systems. In the event that an attacker knows a program’s memory layout, they may be able to intentionally input data that cannot be stored by the buffer. This will enable them to overwrite memory locations that store executable code and replace it with malicious code that allows them to take control of the program.<br/>
+								Attackers use a buffer overflow to corrupt a web application’s execution stack, execute arbitrary code, and take over a machine. Flaws in buffer overflows can exist in both application servers and web servers, especially web applications that use libraries like graphics libraries. Buffer overflows can also exist in custom web application codes. This is more likely because they are given less scrutiny by security teams but are less likely to be discovered by hackers and more difficult to exploit.
+								<a href="#" class="image main"><img src="../images/buff1.png" alt="" /></a>
+							</p>
+							<h2>Which Programming Languages Are More Vulnerable?</h2>
+							<p>
+								Nearly all applications, web servers, and web application environments are vulnerable to buffer overflows. Environments that are written in interpreted languages, such as Java and Python, are immune to the attacks, with the exception of overflows in their interpreter.<br/>
+								Buffer overflow attacks are typically caused by coding errors and mistakes in application development. This results in buffer overflow as the application does not allocate appropriately sized buffers and fails to check for overflow issues. These issues are particularly problematic in the programming language C/C++ as it does not have buffer overflow protection built in.<br/>
+								This programming language is not the only one vulnerable to buffer overflow attacks. A buffer overflow program in Assembly, C, C++ or Fortran is also particularly vulnerable and more likely to enable attackers to compromise a system. However, applications written in JavaScript or Perl are typically less vulnerable to buffer overflow attacks.
+							</p>
+							<a href="#" class="image main"><img src="../images/buff2.png" alt="" /></a>
+							<p>To practice the Bufferoverflow attack just download a simple binary from here > </p>
+							<a href="https://github.com/DownUnderCTF/Challenges_2020_public/raw/master/pwn/return-to-what/challenge/return-to-what" class="button icon solid fa-download">Download</a>
+							</section>
+
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						
+
+							<section>
+								<h3>Blog Created by Vivek Bharti ^_^ Yash Bhardwaj</h3>
+								<ul class="icons alt">
+									<li><a href="https://github.com/Hackgodybj/CyberRelay" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; CyberRelay</li><li>All rights reserved 2022</li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
