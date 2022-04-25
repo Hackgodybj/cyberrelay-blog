@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Cyber Relay Blog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="../index.html" class="logo">Cyber Relay</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Offensive / Red Teaming</a></li>
+							<li><a href="generic.html">Defensive / Blue Teaming</a></li>
+							<li><a href="elements.html">Tryouts / Code Blocks</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://twitter.com/hackgodybj" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://instagram.com/hackgodybj" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/Hackgodybj/CyberRelay" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">March 21, 2022</span>
+									<h1>MITM :  <br />
+									man in the middle attack</h1>
+									<p>A man in the middle (MITM) attack is a general term for when a perpetrator positions himself in a conversation between a user and an application—either to eavesdrop or to impersonate one of the parties.<br />
+									</p>
+								</header>
+								<div class="image main"><img src="images/blue.png" alt="" /></div>
+								<p>A man-in-the-middle attack is a type of eavesdropping attack, where attackers interrupt an existing conversation or data transfer. After inserting themselves in the "middle" of the transfer, the attackers pretend to be both legitimate participants. This enables an attacker to intercept information and data from either party while also sending malicious links or other information to both legitimate participants in a way that might not be detected until it is too late.
+
+								You can think of this type of attack as similar to the game of telephone where one person's words are carried along from participant to participant until it has changed by the time it reaches the final person. In a man-in-the-middle attack, the middle participant manipulates the conversation unknown to either of the two legitimate participants, acting to retrieve confidential information and otherwise cause damage. </p>
+								<a href="#" class="image main"><img src="../images/mitm2.png" alt="" /></a>
+							<!-- Blockquote -->
+									<h2>Key Concepts of a Man-in-the-Middle Attack: </h2>
+									<blockquote><ul>
+										<li>Are a type of session hijacking</li>
+										<li>Involve attackers inserting themselves as relays or proxies in an ongoing, legitimate conversation or data transfer</li>
+										<li>Exploit the real-time nature of conversations and data transfers to go undetected</li>
+										<li>Allow attackers to intercept confidential data</li>
+										<li>Allow attackers to insert malicious data and links in a way indistinguishable from legitimate data</li>
+									</ul></blockquote>
+									<hr />
+
+
+							<h3>MITM Workflow structure</h3>
+							<p>
+								Scenario 1: Intercepting Data
+								<br/>
+								The attacker installs a packet sniffer to analyze network traffic for insecure communications.
+When a user logs in to a site, the attacker retrieves their user information and redirects them to a fake site that mimics the real one.
+The attacker's fake site gathers data from the user, which the attacker can then use on the real site to access the target's information.
+In this scenario, an attacker intercepts a data transfer between a client and server. By tricking the client into believing it is still communicating with the server and the server into believing it is still receiving information from the client, the attacker is able to intercept data from both as well as inject their own false information into any future transfers.
+								<a href="#" class="image main"><img src="../images/mitm3.png" alt="" /></a>
+							</p>
+							<p>
+								Scenario 2: Gaining Access to Funds
+								<br/>
+								
+The attacker sets up a fake chat service that mimics that of a well-known bank.
+Using knowledge gained from the data intercepted in the first scenario, the attacker pretends to be the bank and starts a chat with the target.
+The attacker then starts a chat on the real bank site, pretending to be the target and passing along the needed information to gain access to the target's account.
+In this scenario, the attacker intercepts a conversation, passing along parts of the discussion to both legitimate participants.
+								<a href="#" class="image main"><img src="../images/mitm4.png" alt="" /></a>
+							</p>
+							<h2>Real-World MITM Attacks</h2>
+							<p>
+								In 2011, Dutch registrar site DigiNotar was breached, which enabled a threat actor to gain access to 500 certificates for websites like Google, Skype, and others. Access to these certificates allowed the attacker to pose as legitimate websites in a MITM attack, stealing users' data after tricking them into entering passwords on malicious mirror sites. DigiNotar ultimately filed for bankruptcy as a result of the breach.
+In 2017, credit score company Equifax removed its apps from Google and Apple after a breach resulted in the leak of personal data. A researcher found that the app did not consistently use HTTPS, allowing attackers to intercept data as users accessed their accounts.	
+							</p>
+							<a href="#" class="image main"><img src="../images/mitm5.png" alt="" /></a>
+							<p>Here is the docker container (dockerfile) for practice</p>
+							<pre><code>FROM ubuntu:20.04 as builder
+
+# Install openssh-client so we get ssh-keygen.
+RUN apt update -qq && apt install -y -q openssh-client
+
+
+# Copy ssh-keygen (and library dependency) to our final image.
+FROM ubuntu:20.04
+COPY --from=builder /lib/x86_64-linux-gnu/libcrypto.so.1.1 /lib/x86_64-linux-gnu/libcrypto.so.1.1
+COPY --from=builder /usr/bin/ssh-keygen /usr/bin/ssh-keygen
+
+RUN useradd -m -s /bin/bash ssh-mitm
+
+COPY openssh-7.5p1-mitm/sshd /home/ssh-mitm/bin/sshd_mitm
+COPY openssh-7.5p1-mitm/ssh /home/ssh-mitm/bin/ssh
+COPY openssh-7.5p1-mitm/ssh_config.mitm /home/ssh-mitm/etc/ssh_config
+COPY openssh-7.5p1-mitm/sshd_config /home/ssh-mitm/etc/sshd_config
+RUN chown ssh-mitm:ssh-mitm /home/ssh-mitm/etc/
+
+USER ssh-mitm
+WORKDIR /home/ssh-mitm
+RUN mkdir -m 0700 /home/ssh-mitm/empty /home/ssh-mitm/.ssh /home/ssh-mitm/tmp /home/ssh-mitm/log
+
+COPY docker/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+EXPOSE 2222/tcp
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD /home/ssh-mitm/bin/sshd_mitm -D -f /home/ssh-mitm/etc/sshd_config
+
+</code></pre>
+							<a href="https://raw.githubusercontent.com/jtesta/ssh-mitm/master/Dockerfile" class="button icon solid fa-download">Download</a>
+							</section>
+
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						
+
+							<section>
+								<h3>Blog Created by Vivek Bharti ^_^ Yash Bhardwaj</h3>
+								<ul class="icons alt">
+									<li><a href="https://github.com/Hackgodybj/CyberRelay" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; CyberRelay</li><li>All rights reserved 2022</li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

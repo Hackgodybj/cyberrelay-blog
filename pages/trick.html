@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Cyber Relay Blog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="../index.html" class="logo">Cyber Relay</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Offensive / Red Teaming</a></li>
+							<li><a href="generic.html">Defensive / Blue Teaming</a></li>
+							<li><a href="elements.html">Tryouts / Code Blocks</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://twitter.com/hackgodybj" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://instagram.com/hackgodybj" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/Hackgodybj/CyberRelay" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">March 21, 2022</span>
+									<h1>| File format trickey<br />
+									| magic bytes manuplation</h1>
+									<p>File upload is one of the most common functionalities application has to offer. This functionality, however, is implemented in many different forms based on the application’s use case.<br />
+									</p>
+								</header>
+								<div class="image main"><img src="images/blue.png" alt="" /></div>
+								<p>ZipSlip attack is an interesting attack vector that can be tested when the application accepts archives in file upload functionality and later unarchive it for further processing.
+								Zip Slip is a widespread critical archive extraction vulnerability, allowing attackers to write arbitrary files on the system, typically resulting in remote command execution. It was discovered and responsibly disclosed by the Snyk Security team ahead of public disclosure on 5th June 2018, and affects thousands of projects, including ones from HP, Amazon, Apache, Pivotal, and many more.
+								File overwrite is an interesting attack during the file upload when a user can control and arbitrarily set the path where the file should be stored. This can be considered similar to the Zip Slip and Path Traversal attack but assuming the scenario where it is possible to directly upload a file and change its path to overwrite an existing system file, this is kept as a separate issue. </p>
+							<!-- Blockquote -->
+									<h2>File Format Trickery: </h2>
+									<blockquote><ul>
+										<li>Bypass the file format upload section by adding fake extension</li>
+										<li>Bypass uploading filters by changing into the file magic bytes</li>
+										<li>Burpsuite bypass the uploading filter using the response manuplation technique.</li>
+									</ul></blockquote>
+									<hr />
+
+
+							<h3>Unrestricted File Upload</h3>
+							<p>
+								Uploaded files represent a significant risk to applications. The first step in many attacks is to get some code to the system to be attacked. Then the attack only needs to find a way to get the code executed. Using a file upload helps the attacker accomplish the first step.
+								There are really two classes of problems here. The first is with the file metadata, like the path and file name. These are generally provided by the transport, such as HTTP multi-part encoding. This data may trick the application into overwriting a critical file or storing the file in a bad location. You must validate the metadata extremely carefully before using it.
+								The other class of problem is with the file size or content. The range of problems here depends entirely on what the file is used for. See the examples below for some ideas about how files might be misused. To protect against this type of attack, you should analyse everything your application does with files and think carefully about what processing and interpreters are involved.
+								<a href="#" class="image main"><img src="../images/file1.png" alt="" /></a>
+							</p>
+							<h2>Weak Protections and Bypassing Methods</h2>
+							<p>
+								Finding missed extensions that can be executed on the server side or can be dangerous on the client side (e.g. ".php5", ".pht", ".phtml", ".shtml, ".asa", ".cer", ".asax", ".swf", or ".xap").
+Finding flaws in a web server configuration when it parses files with double extensions or it executes them by providing a sensitive extension after a delimiter such as "/" or ";" character (e.g. "/file.jpg/index.php" when the "file.jpg" file contains PHP code and has been uploaded)
+
+							</p>
+							<a href="#" class="image main"><img src="../images/file2.png" alt="" /></a>
+							
+							</section>
+
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						
+
+							<section>
+								<h3>Blog Created by Vivek Bharti ^_^ Yash Bhardwaj</h3>
+								<ul class="icons alt">
+									<li><a href="https://github.com/Hackgodybj/CyberRelay" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; CyberRelay</li><li>All rights reserved 2022</li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

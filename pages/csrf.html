@@ -1,0 +1,111 @@
+	<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Cyber Relay Blog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="../index.html" class="logo">Cyber Relay</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Offensive / Red Teaming</a></li>
+							<li><a href="generic.html">Defensive / Blue Teaming</a></li>
+							<li><a href="elements.html">Tryouts / Code Blocks</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://twitter.com/hackgodybj" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://instagram.com/hackgodybj" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/Hackgodybj/CyberRelay" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">March 21, 2022</span>
+									<h1>CSRF: <br />
+									Cross site request forgery</h1>
+									<p>Cross-site request forgery (also known as CSRF) is a web security vulnerability that allows an attacker to induce users to perform actions that they do not intend to perform.<br />
+									</p>
+								</header>
+								<div class="image main"><img src="images/blue.png" alt="" /></div>
+								<p>It allows an attacker to partly circumvent the same origin policy, which is designed to prevent different websites from interfering with each other. In a successful CSRF attack, the attacker causes the victim user to carry out an action unintentionally. For example, this might be to change the email address on their account, to change their password, or to make a funds transfer. Depending on the nature of the action, the attacker might be able to gain full control over the user's account. If the compromised user has a privileged role within the application, then the attacker might be able to take full control of all the application's data and functionality. </p>
+							<!-- Blockquote -->
+									<h2>How does CSRF work? </h2>
+									<blockquote><ul>
+										<li>A relevant action : There is an action within the application that the attacker has a reason to induce. This might be a privileged action (such as modifying permissions for other users) or any action on user-specific data (such as changing the user's own password).</li>
+										<li>Cookie-based session handling : Performing the action involves issuing one or more HTTP requests, and the application relies solely on session cookies to identify the user who has made the requests. There is no other mechanism in place for tracking sessions or validating user requests.</li>
+										<li>No unpredictable request parameters : The requests that perform the action do not contain any parameters whose values the attacker cannot determine or guess. For example, when causing a user to change their password, the function is not vulnerable if an attacker needs to know the value of the existing password.</li>
+									</ul></blockquote>
+									<hr />
+
+
+							<h3>How to deliver a CSRF exploit</h3>
+							<p>
+								The delivery mechanisms for cross-site request forgery attacks are essentially the same as for reflected XSS. Typically, the attacker will place the malicious HTML onto a web site that they control, and then induce victims to visit that web site. This might be done by feeding the user a link to the web site, via an email or social media message. Or if the attack is placed into a popular web site (for example, in a user comment), they might just wait for users to visit the web site.
+								Note that some simple CSRF exploits employ the GET method and can be fully self-contained with a single URL on the vulnerable web site. In this situation, the attacker may not need to employ an external site, and can directly feed victims a malicious URL on the vulnerable domain. In the preceding example, if the request to change email address can be performed with the GET method,
+								<a href="#" class="image main"><img src="../images/csrf1.png" alt="" /></a>
+							</p>
+							<h2>How to construct a CSRF attack</h2>
+							<p>
+								Manually creating the HTML needed for a CSRF exploit can be cumbersome, particularly where the desired request contains a large number of parameters, or there are other quirks in the request. The easiest way to construct a CSRF exploit is using the CSRF PoC generator that is built in to Burp Suite Professional.
+								Select a request anywhere in Burp Suite Professional that you want to test or exploit.
+From the right-click context menu, select Engagement tools / Generate CSRF PoC.
+Burp Suite will generate some HTML that will trigger the selected request (minus cookies, which will be added automatically by the victim's browser).
+You can tweak various options in the CSRF PoC generator to fine-tune aspects of the attack. You might need to do this in some unusual situations to deal with quirky features of requests.
+Copy the generated HTML into a web page, view it in a browser that is logged in to the vulnerable web site, and test whether the intended request is issued successfully and the desired action occurs.
+
+							</p>
+							<a href="#" class="image main"><img src="../images/csrf2.png" alt="" /></a>
+							
+							</section>
+
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						
+
+							<section>
+								<h3>Blog Created by Vivek Bharti ^_^ Yash Bhardwaj</h3>
+								<ul class="icons alt">
+									<li><a href="https://github.com/Hackgodybj/CyberRelay" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; CyberRelay</li><li>All rights reserved 2022</li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

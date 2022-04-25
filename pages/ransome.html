@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Cyber Relay Blog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="../index.html" class="logo">Cyber Relay</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Offensive / Red Teaming</a></li>
+							<li><a href="generic.html">Defensive / Blue Teaming</a></li>
+							<li><a href="elements.html">Tryouts / Code Blocks</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://twitter.com/hackgodybj" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://instagram.com/hackgodybj" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/Hackgodybj/CyberRelay" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">March 21, 2022</span>
+									<h1>RansomeWare :  <br />
+									The wannacry Attack</h1>
+									<p>WannaCry is an example of crypto ransomware, a type of malicious software (malware) used by cybercriminals to extort money.<br />
+									</p>
+								</header>
+								<div class="image main"><img src="images/blue.png" alt="" /></div>
+								<p>Ransomware does this by either encrypting valuable files, so you are unable to read them, or by locking you out of your computer, so you are not able to use it. Ransomware that uses encryption is called crypto ransomware. The type that locks you out of your computer is called locker ransomware.
+								WannaCry targets computers using Microsoft Windows as an operating system. It encrypts data and demands payment of a ransom in the cryptocurrency Bitcoin for its return.</p>
+								<p>This ransomware attack spread through computers operating Microsoft Windows. User’s files were held hostage, and a Bitcoin ransom was demanded for their return.
+								Were it not for the continued use of outdated computer systems and poor education around the need to update software, the damage caused by this attack could have been avoided. </p>
+								<a href="#" class="image main"><img src="../images/wanna2.png" alt="" /></a>
+							<!-- Blockquote -->
+									<h2>Components of Wannacry: </h2>
+									<blockquote><ul>
+										<li>An application that encrypts and decrypts data</li>
+										<li>Files containing encryption keys</li>
+										<li>A copy of Tor</li>
+									</ul></blockquote>
+									<hr />
+
+
+							<h3>How does WannaCry infect PCs?</h3>
+							<p>
+								The attack vector for WannaCry is more interesting than the ransomware itself. The vulnerability WannaCry exploits lies in the Windows implementation of the Server Message Block (SMB) protocol. The SMB protocol helps various nodes on a network communicate, and Microsoft's implementation could be tricked by specially crafted packets into executing arbitrary code. <br/>
+								It is believed that the U.S. National Security Agency discovered this vulnerability and, rather than reporting it to the infosec community, developed code to exploit it, called EternalBlue. This exploit was in turn stolen by a hacking group known as the Shadow Brokers, who released it obfuscated in a seemingly political Medium post on April 8, 2017. Microsoft itself had discovered the vulnerability a month prior and had released a patch, but many systems remained vulnerable, and WannaCry, which used EternalBlue to infect computers, began spreading rapidly on May 12. In the wake of the outbreak, Microsoft slammed the U.S. government for not having shared its knowledge of the vulnerability sooner.
+								Even if a PC has been successfully infected, WannaCry won't necessarily begin encrypting files. That's because, as noted above, it first tries to access a very long, gibberish URL before going to work. If it can access that domain, WannaCry shuts itself down. It's not entirely clear what the purpose of this functionality is. Some researchers believed this was supposed to be a means for the malware's creators to pull the plug on the attack. However, Marcus Hutchins, the British security researcher who discovered that WannaCry was attempting to contact this URL, believes it was meant to make analysis of the code more difficult. Many researchers will run malware in a "sandbox" environment, from within which any URL or IP address will appear reachable; by hard-coding into WannaCry an attempt to contact a nonsense URL that wasn't actually expected to exist, its creators hoped to ensure that the malware wouldn't go through its paces for researchers to watch.
+								Hutchins not only discovered the hard-coded URL but paid $10.96 to register the domain and set up a site there, thus helping blunt, though not stop, the spread of the malware. Shortly after being hailed as a hero for this, Hutchins was arrested for supposedly developing different malware in 2014. He has proclaimed his innocence.
+								<a href="#" class="image main"><img src="../images/wanna3.png" alt="" /></a>
+							</p>
+							<h2>WannaCry Patched? / but still exploitable !</h2>
+							<p>
+								As noted, Microsoft released a patch for the SMB vulnerability that WannaCry exploits two months before the attack began. While unpatched Windows 10 systems were vulnerable, the automatic update feature built into the OS meant that almost all Windows 10 systems were protected by May of 2017.
+								The Microsoft SMB patch was initially only available for currently supported versions of Windows, which notably excluded Windows XP. There are still millions of internet-connected Windows XP systems out there — including at Britain's National Health Service, where many WannaCry attacks were reported — and Microsoft eventually made the SMB patch available for older versions of the OS as well. However, a later analysis found that the vast majority of WannaCry infections struck machines running Windows 7, an operating system Microsoft does still support.
+							</p>
+							<a href="#" class="image main"><img src="../images/wanna4.png" alt="" /></a>
+							<p>Here's is a sample of wannacry ransomeware for reverse enginerring practice > </p>
+							<a href="https://github.com/fabrimagic72/malware-samples/raw/master/Ransomware/Wannacry/32f24601153be0885f11d62e0a8a2f0280a2034fc981d8184180c5d3b1b9e8cf.zip" class="button icon solid fa-download">Download</a>
+							</section>
+
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						
+
+							<section>
+								<h3>Blog Created by Vivek Bharti ^_^ Yash Bhardwaj</h3>
+								<ul class="icons alt">
+									<li><a href="https://github.com/Hackgodybj/CyberRelay" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; CyberRelay</li><li>All rights reserved 2022</li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
